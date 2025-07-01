@@ -8,51 +8,89 @@ O **deuruimcidadao** é uma plataforma digital inovadora que conecta cidadãos e
 
 Criar uma ponte digital entre a população e os órgãos responsáveis, facilitando a comunicação, aumentando a transparência e promovendo a participação cidadã na melhoria das cidades.
 
-## 🚀 Funcionalidades Principais
+## 🏗️ Arquitetura
 
-### 👥 Sistema de Usuários
-- **Cadastro Completo**: Nome, email, CPF, telefone, cidade
-- **Dois Tipos de Usuário**:
-  - **Cidadão**: Pode criar, votar e comentar reclamações
-  - **Gestor Público**: Pode gerenciar e responder reclamações
-- **Autenticação Segura**: Login com JWT, hash de senhas
-- **Perfil Editável**: Foto, bio, configurações de privacidade
+Este projeto foi desenvolvido seguindo os princípios de **Clean Architecture** e **Clean Code**, garantindo:
+
+- **Separação de responsabilidades** em camadas bem definidas
+- **Baixo acoplamento** entre componentes
+- **Alta coesão** dentro de cada módulo
+- **Facilidade de testes** e manutenção
+- **Escalabilidade** para crescimento futuro
+
+### 📁 Estrutura do Projeto
+
+```
+deuruimcidadao/
+├── app/                        # Aplicação principal
+│   ├── domain/                 # Camada de Domínio (regras de negócio)
+│   │   ├── entities/          # Entidades puras
+│   │   │   ├── user.py        # Entidade User
+│   │   │   ├── complaint.py   # Entidade Complaint
+│   │   │   └── notification.py # Entidade Notification
+│   │   └── models/            # Modelos de domínio
+│   ├── usecases/              # Camada de Casos de Uso (lógica de aplicação)
+│   │   ├── auth_usecases.py   # Casos de uso de autenticação
+│   │   ├── complaint_usecases.py # Casos de uso de reclamações
+│   │   ├── user_usecases.py   # Casos de uso de usuário
+│   │   └── notification_usecases.py # Casos de uso de notificações
+│   ├── infrastructure/        # Camada de Infraestrutura (frameworks, DB, APIs)
+│   │   ├── db/               # Banco de dados
+│   │   │   ├── database.py   # Configuração do banco
+│   │   │   └── models.py     # Modelos SQLAlchemy
+│   │   └── external/         # APIs externas
+│   ├── interfaces/           # Camada de Interfaces (rotas, controllers)
+│   │   ├── api/             # API REST
+│   │   │   ├── auth_routes.py # Rotas de autenticação
+│   │   │   ├── complaint_routes.py # Rotas de reclamações
+│   │   │   ├── user_routes.py # Rotas de usuário
+│   │   │   └── notification_routes.py # Rotas de notificações
+│   │   └── web/             # Interface web
+│   └── main.py              # Configuração principal da aplicação
+├── src/                     # Arquivos estáticos (frontend)
+│   └── static/             # HTML, CSS, JS
+├── tests/                  # Testes
+│   ├── unit/              # Testes unitários
+│   └── integration/       # Testes de integração
+├── uploads/               # Arquivos de upload
+├── .env                   # Variáveis de ambiente
+├── .gitignore            # Arquivos ignorados pelo Git
+├── requirements.txt      # Dependências Python
+├── run.py               # Script de execução
+└── README.md           # Este arquivo
+```
+
+## 🚀 Funcionalidades Implementadas
+
+### 🔐 Sistema de Autenticação
+- ✅ Registro de usuários com validação completa
+- ✅ Login usando username, email ou CPF
+- ✅ Autenticação JWT segura
+- ✅ Logout
+- ✅ Proteção de rotas
+- ✅ Verificação de disponibilidade de username/email
+
+### 👤 Perfil do Usuário
+- ✅ Visualização do perfil
+- ✅ Edição de dados pessoais
+- ✅ Upload de foto de perfil
+- ✅ Troca de senha
+- ✅ Estatísticas do usuário
 
 ### 📝 Sistema de Reclamações
-- **Categorias Inteligentes**: Buracos, iluminação, limpeza, trânsito, segurança
-- **Upload de Mídia**: Fotos e vídeos para documentar problemas
-- **Geolocalização**: Localização exata dos problemas
-- **Sistema de Votação**: Evita duplicatas e prioriza problemas
-- **Status Dinâmico**: Pendente → Em Andamento → Resolvida
-- **Comentários**: Interação entre cidadãos e gestores
-
-### 🎮 Gamificação
-- **Sistema de Pontos**: XP por ações (criar reclamação, votar, etc.)
-- **Níveis de Usuário**: Progressão baseada em atividade
-- **Badges e Conquistas**: Reconhecimento por contribuições
-- **Rankings**: Cidadãos mais ativos por cidade
-
-### 🗺️ Integração com Mapas
-- **Geocodificação**: Conversão endereço ↔ coordenadas
-- **Mapa de Calor**: Visualização de densidade de problemas
-- **Reclamações Próximas**: Busca por proximidade
-- **Validação de Localização**: Verifica limites da cidade
+- ✅ Criação de reclamações com validação
+- ✅ Listagem pública e pessoal
+- ✅ Edição/exclusão de reclamações próprias
+- ✅ Sistema de status (pendente, respondida, resolvida)
+- ✅ Votação em reclamações
+- ✅ Categorias predefinidas
+- ✅ Filtros de busca
 
 ### 🔔 Sistema de Notificações
-- **Múltiplos Canais**: Email, WhatsApp, notificações push
-- **Notificações Automáticas**: Status atualizado, novas respostas
-- **Preferências Personalizáveis**: Controle total pelo usuário
-
-### 📊 Painel Administrativo
-- **Dashboard Completo**: Estatísticas em tempo real
-- **Gerenciamento de Reclamações**: Filtros, busca, ações em lote
-- **Relatórios**: Analytics e exportação de dados
-- **Gestão de Usuários**: Visualizar, editar, suspender
-
-### 🌐 Arquitetura Multi-cidade
-- **Expansão Preparada**: Sistema pronto para múltiplas cidades
-- **Seleção de Cidade**: No cadastro e navegação
-- **Dados Isolados**: Cada cidade com seus próprios dados
+- ✅ Notificações in-app
+- ✅ Marcação como lida
+- ✅ Contagem de não lidas
+- ✅ Filtros por tipo e canal
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -61,61 +99,19 @@ Criar uma ponte digital entre a população e os órgãos responsáveis, facilit
 - **SQLAlchemy**: ORM para banco de dados
 - **Flask-JWT-Extended**: Autenticação JWT
 - **Flask-Bcrypt**: Hash de senhas
-- **SQLite**: Banco de dados (desenvolvimento)
-- **Geopy**: Funcionalidades geográficas
+- **SQLite**: Banco de dados
+- **Python-dotenv**: Gerenciamento de variáveis de ambiente
 
 ### Frontend
 - **HTML5**: Estrutura semântica
-- **CSS3**: Estilização moderna com tema escuro
-- **JavaScript ES6+**: Interatividade e AJAX
-- **Responsive Design**: Compatível com mobile
+- **CSS3**: Estilização moderna
+- **JavaScript ES6+**: Interatividade
 
-### Funcionalidades Avançadas
-- **Upload de Arquivos**: Pillow para processamento de imagens
-- **Validação**: CPF, email, coordenadas geográficas
-- **CORS**: Suporte para requisições cross-origin
-- **Logging**: Sistema completo de logs
-
-## 📁 Estrutura do Projeto
-
-```
-deuruimcidadao/
-├── src/
-│   ├── main.py                 # Arquivo principal da aplicação
-│   ├── database.py             # Configuração do banco de dados
-│   ├── models/                 # Modelos de dados
-│   │   ├── __init__.py
-│   │   ├── user.py            # Modelo de usuário
-│   │   ├── complaint.py       # Modelo de reclamação
-│   │   ├── notification.py    # Modelo de notificação
-│   │   └── gamification.py    # Sistema de gamificação
-│   ├── routes/                 # Rotas da API
-│   │   ├── __init__.py
-│   │   ├── auth.py            # Autenticação
-│   │   ├── complaints.py      # Reclamações
-│   │   ├── user_profile.py    # Perfil do usuário
-│   │   ├── admin.py           # Painel administrativo
-│   │   ├── notifications.py   # Notificações
-│   │   └── maps.py            # Mapas e geolocalização
-│   ├── services/               # Serviços auxiliares
-│   │   ├── notification_service.py
-│   │   └── maps_service.py
-│   ├── static/                 # Arquivos estáticos
-│   │   ├── index.html         # Página principal
-│   │   ├── dashboard.html     # Dashboard do usuário
-│   │   ├── profile.html       # Página de perfil
-│   │   ├── admin.html         # Painel administrativo
-│   │   ├── styles.css         # Estilos CSS
-│   │   ├── script.js          # JavaScript principal
-│   │   ├── dashboard.js       # JS do dashboard
-│   │   ├── profile.js         # JS do perfil
-│   │   └── admin.js           # JS do admin
-│   └── database/               # Banco de dados
-│       └── app.db             # SQLite database
-├── venv/                       # Ambiente virtual Python
-├── requirements.txt            # Dependências Python
-└── README.md                   # Este arquivo
-```
+### Arquitetura
+- **Clean Architecture**: Separação em camadas
+- **Clean Code**: Código limpo e legível
+- **SOLID Principles**: Princípios de design
+- **Dependency Injection**: Inversão de dependências
 
 ## 🚀 Como Executar o Projeto
 
@@ -125,11 +121,10 @@ deuruimcidadao/
 
 ### Passo a Passo
 
-1. **Clone ou extraia o projeto**
+1. **Clone o repositório**
    ```bash
-   # Se você recebeu um arquivo ZIP, extraia-o
-   # Se está clonando: git clone <url-do-repositorio>
-   cd deuruimcidadao
+   git clone <url-do-repositorio>
+   cd deuruimcidadao-teste
    ```
 
 2. **Crie e ative o ambiente virtual**
@@ -151,119 +146,36 @@ deuruimcidadao/
    pip install -r requirements.txt
    ```
 
-4. **Execute a aplicação**
+4. **Configure as variáveis de ambiente**
    ```bash
-   python src/main.py
+   cp .env.example .env
+   # Edite o arquivo .env conforme necessário
    ```
 
-5. **Acesse no navegador**
+5. **Execute a aplicação**
+   ```bash
+   python run.py
+   ```
+   
+   Ou diretamente:
+   ```bash
+   python -m app.main
+   ```
+
+6. **Acesse no navegador**
    ```
    http://localhost:5000
    ```
 
-### 🔧 Configuração Adicional
-
-#### Variáveis de Ambiente (Opcional)
-Crie um arquivo `.env` na raiz do projeto para configurações personalizadas:
-
-```env
-# Configurações do Flask
-FLASK_ENV=development
-SECRET_KEY=sua-chave-secreta-aqui
-
-# Configurações de Email (para notificações)
-SMTP_SERVER=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USERNAME=seu-email@gmail.com
-SMTP_PASSWORD=sua-senha-de-app
-
-# Configurações do WhatsApp (API externa)
-WHATSAPP_API_URL=https://api.whatsapp.com
-WHATSAPP_API_TOKEN=seu-token-aqui
-
-# Configurações de Mapas
-MAPS_API_KEY=sua-chave-do-google-maps
-```
-
-## 📱 Como Usar a Plataforma
-
-### Para Cidadãos
-
-1. **Cadastro**
-   - Acesse a página inicial
-   - Clique em "Cadastrar"
-   - Preencha seus dados (nome, email, CPF, cidade)
-   - Selecione "Cidadão" como tipo de usuário
-
-2. **Fazer uma Reclamação**
-   - Faça login na plataforma
-   - Acesse o Dashboard
-   - Clique em "Nova Reclamação"
-   - Preencha: título, descrição, categoria, localização
-   - Adicione fotos se necessário
-   - Envie a reclamação
-
-3. **Acompanhar Reclamações**
-   - Visualize suas reclamações no perfil
-   - Receba notificações sobre atualizações
-   - Vote em reclamações de outros cidadãos
-   - Comente e interaja
-
-### Para Gestores Públicos
-
-1. **Cadastro**
-   - Cadastre-se selecionando "Gestor Público"
-   - Aguarde aprovação (se necessário)
-
-2. **Gerenciar Reclamações**
-   - Acesse o painel administrativo
-   - Visualize todas as reclamações da cidade
-   - Filtre por status, categoria, prioridade
-   - Atualize status das reclamações
-   - Responda aos cidadãos
-
-3. **Relatórios e Analytics**
-   - Visualize estatísticas da cidade
-   - Exporte relatórios
-   - Analise tendências e padrões
-
-## 🎨 Design e Interface
-
-### Tema Escuro
-- **Cores principais**: Tons de azul, roxo e cinza
-- **Contraste otimizado**: Reduz fadiga visual
-- **Acessibilidade**: Compatível com leitores de tela
-
-### Responsividade
-- **Mobile First**: Otimizado para dispositivos móveis
-- **Breakpoints**: Tablet e desktop
-- **Touch Friendly**: Botões e elementos adequados para toque
-
-### Micro-interações
-- **Animações suaves**: Transições de 300ms
-- **Feedback visual**: Estados hover, focus, active
-- **Loading states**: Indicadores de carregamento
-
-## 🔒 Segurança
+## 📡 API Endpoints
 
 ### Autenticação
-- **JWT Tokens**: Sessões seguras e stateless
-- **Hash de Senhas**: Bcrypt com salt
-- **Validação de Dados**: Sanitização de inputs
-
-### Privacidade
-- **LGPD Compliant**: Exportação e exclusão de dados
-- **Configurações de Privacidade**: Controle pelo usuário
-- **Dados Mínimos**: Coleta apenas o necessário
-
-## 📊 APIs Disponíveis
-
-### Autenticação
-- `POST /api/auth/register` - Cadastro de usuário
+- `POST /api/auth/register` - Registro de usuário
 - `POST /api/auth/login` - Login
 - `POST /api/auth/logout` - Logout
-- `GET /api/auth/check-username` - Verificar disponibilidade
+- `GET /api/auth/check-username` - Verificar username
 - `GET /api/auth/check-email` - Verificar email
+- `GET /api/auth/me` - Dados do usuário atual
 
 ### Reclamações
 - `GET /api/complaints` - Listar reclamações
@@ -272,67 +184,77 @@ MAPS_API_KEY=sua-chave-do-google-maps
 - `PUT /api/complaints/<id>` - Atualizar reclamação
 - `DELETE /api/complaints/<id>` - Excluir reclamação
 - `POST /api/complaints/<id>/vote` - Votar em reclamação
+- `GET /api/complaints/my` - Minhas reclamações
+- `GET /api/complaints/categories` - Categorias disponíveis
 
-### Perfil
-- `GET /api/profile` - Dados do perfil
-- `PUT /api/profile` - Atualizar perfil
-- `POST /api/profile/upload-avatar` - Upload de foto
-- `PUT /api/profile/change-password` - Alterar senha
+### Usuário
+- `GET /api/users/profile` - Perfil do usuário
+- `PUT /api/users/profile` - Atualizar perfil
+- `PUT /api/users/change-password` - Alterar senha
+- `POST /api/users/upload-avatar` - Upload de foto
+- `GET /api/users/<id>` - Perfil público
+- `GET /api/users/cities` - Cidades disponíveis
 
 ### Notificações
 - `GET /api/notifications` - Listar notificações
 - `PUT /api/notifications/<id>/read` - Marcar como lida
 - `GET /api/notifications/unread-count` - Contagem não lidas
+- `PUT /api/notifications/mark-all-read` - Marcar todas como lidas
 
-### Mapas
-- `POST /api/maps/geocode` - Converter endereço em coordenadas
-- `GET /api/maps/nearby-complaints` - Reclamações próximas
-- `GET /api/maps/heatmap` - Dados para mapa de calor
+## 🧪 Testes
 
-### Admin (Gestores)
-- `GET /api/admin/dashboard` - Estatísticas do painel
-- `GET /api/admin/complaints` - Gerenciar reclamações
-- `PUT /api/admin/complaints/<id>/status` - Atualizar status
-- `GET /api/admin/users` - Gerenciar usuários
+Para executar os testes:
 
-## 🚀 Próximos Passos e Melhorias
+```bash
+# Testes unitários
+python -m pytest tests/unit/
 
-### Funcionalidades Futuras
-- [ ] **App Mobile**: React Native ou Flutter
-- [ ] **Integração com Prefeituras**: APIs oficiais
-- [ ] **Chatbot**: Atendimento automatizado
-- [ ] **Reconhecimento de Imagem**: Categorização automática
-- [ ] **Blockchain**: Transparência e imutabilidade
-- [ ] **IA para Priorização**: Machine Learning para urgência
+# Testes de integração
+python -m pytest tests/integration/
 
-### Melhorias Técnicas
-- [ ] **Banco de Dados**: Migração para PostgreSQL
-- [ ] **Cache**: Redis para performance
-- [ ] **CDN**: Distribuição de conteúdo
-- [ ] **Monitoramento**: Logs e métricas avançadas
-- [ ] **Testes**: Cobertura completa de testes
-- [ ] **CI/CD**: Pipeline de deploy automatizado
+# Todos os testes
+python -m pytest
+```
 
-### Expansão
-- [ ] **Mais Cidades**: Cuiabá, Várzea Grande, Campo Grande
-- [ ] **Estados**: Mato Grosso, Mato Grosso do Sul
-- [ ] **Nacional**: Expansão para todo o Brasil
-- [ ] **Internacional**: Adaptação para outros países
+## 🔧 Configuração
+
+### Variáveis de Ambiente
+
+Copie o arquivo `.env.example` para `.env` e configure:
+
+```env
+# Flask
+SECRET_KEY=sua-chave-secreta
+DEBUG=True
+
+# Banco de Dados
+DATABASE_URL=sqlite:///app.db
+
+# JWT
+JWT_SECRET_KEY=sua-chave-jwt
+JWT_ACCESS_TOKEN_EXPIRES=3600
+
+# Upload
+UPLOAD_FOLDER=uploads
+MAX_CONTENT_LENGTH=16777216
+```
 
 ## 🤝 Contribuição
 
+### Padrões de Código
+
+- **Python**: PEP 8
+- **Clean Code**: Funções pequenas, nomes significativos
+- **Clean Architecture**: Separação de responsabilidades
+- **SOLID**: Princípios de design orientado a objetos
+
 ### Como Contribuir
+
 1. Fork o projeto
 2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
 3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
 4. Push para a branch (`git push origin feature/AmazingFeature`)
 5. Abra um Pull Request
-
-### Padrões de Código
-- **Python**: PEP 8
-- **JavaScript**: ES6+ com Prettier
-- **CSS**: BEM methodology
-- **Commits**: Conventional Commits
 
 ## 📄 Licença
 
@@ -341,24 +263,23 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 ## 👥 Equipe
 
 - **Desenvolvedor Principal**: [Seu Nome]
-- **Design**: [Nome do Designer]
-- **Product Owner**: [Nome do PO]
+- **Arquitetura**: Clean Architecture & Clean Code
 
 ## 📞 Contato
 
 - **Email**: contato@deuruimcidadao.com.br
-- **Website**: https://deuruimcidadao.com.br
-- **GitHub**: https://github.com/deuruimcidadao
-- **LinkedIn**: https://linkedin.com/company/deuruimcidadao
-
-## 🙏 Agradecimentos
-
-- Comunidade Flask por um framework incrível
-- Contribuidores open source
-- Cidadãos que acreditam na mudança através da tecnologia
-- Gestores públicos comprometidos com a transparência
+- **GitHub**: https://github.com/DanAkiama/deuruimcidadao-teste
 
 ---
 
 **deuruimcidadao** - Transformando cidades através da participação cidadã! 🏙️✨
+
+### 🎯 Próximos Passos
+
+- [ ] Implementar testes automatizados
+- [ ] Adicionar sistema de cache
+- [ ] Implementar notificações por email
+- [ ] Adicionar geolocalização
+- [ ] Criar painel administrativo
+- [ ] Implementar sistema de gamificação
 
