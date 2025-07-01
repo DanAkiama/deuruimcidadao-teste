@@ -130,7 +130,7 @@ class NotificationModel(db.Model):
     is_read = db.Column(db.Boolean, default=False, nullable=False, index=True)
     is_sent = db.Column(db.Boolean, default=False, nullable=False, index=True)
     related_complaint_id = db.Column(db.Integer, db.ForeignKey('complaints.id'), nullable=True, index=True)
-    metadata = db.Column(db.Text, nullable=True)
+    extra_data = db.Column(db.Text, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     read_at = db.Column(db.DateTime, nullable=True)
     sent_at = db.Column(db.DateTime, nullable=True)

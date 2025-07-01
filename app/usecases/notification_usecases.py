@@ -53,7 +53,7 @@ class SendNotificationUseCase:
                 notification_type=notification_entity.notification_type,
                 channel=notification_entity.channel,
                 related_complaint_id=notification_entity.related_complaint_id,
-                metadata=notification_entity.metadata
+                extra_data=notification_entity.metadata
             )
             
             # Salvar no banco
@@ -167,7 +167,7 @@ class GetUserNotificationsUseCase:
             'is_read': notification_model.is_read,
             'is_sent': notification_model.is_sent,
             'related_complaint_id': notification_model.related_complaint_id,
-            'metadata': notification_model.metadata,
+            'metadata': notification_model.extra_data,
             'created_at': notification_model.created_at.isoformat() if notification_model.created_at else None,
             'read_at': notification_model.read_at.isoformat() if notification_model.read_at else None,
             'sent_at': notification_model.sent_at.isoformat() if notification_model.sent_at else None
