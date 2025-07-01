@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - deuruimcidadao</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">🏛️</div>
+            <div class="loading-text">Painel Administrativo</div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Admin Navigation -->
+    <nav id="admin-navbar" class="admin-navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="bi bi-shield-check"></i>
+                Admin - deuruimcidadao
+            </a>
+            
+            <div class="nav-menu">
+                <a href="admin.html" class="nav-link active">
+                    <i class="bi bi-speedometer2"></i>
+                    Dashboard
+                </a>
+                <a href="#complaints-section" class="nav-link">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    Reclamações
+                </a>
+                <a href="#users-section" class="nav-link">
+                    <i class="bi bi-people"></i>
+                    Usuários
+                </a>
+                <a href="#reports-section" class="nav-link">
+                    <i class="bi bi-graph-up"></i>
+                    Relatórios
+                </a>
+                <a href="#settings-section" class="nav-link">
+                    <i class="bi bi-gear"></i>
+                    Configurações
+                </a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="city-selector">
+                    <select id="admin-city-select">
+                        <option value="cuiaba">Cuiabá - MT</option>
+                        <option value="varzea-grande">Várzea Grande - MT</option>
+                        <option value="all">Todas as Cidades</option>
+                    </select>
+                </div>
+                
+                <div class="notifications" id="admin-notifications">
+                    <i class="bi bi-bell"></i>
+                    <span id="admin-notification-badge" class="notification-badge">12</span>
+                </div>
+                
+                <div class="user-dropdown">
+                    <div class="user-avatar">
+                        <img src="https://via.placeholder.com/32x32/dc2626/ffffff?text=AD" alt="Admin">
+                        <span id="admin-name">Gestor Municipal</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="bi bi-person"></i>
+                            Meu Perfil
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="bi bi-gear"></i>
+                            Configurações
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <button id="admin-logout-btn" class="dropdown-item">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Sair
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <div class="container">
+            <!-- Dashboard Overview -->
+            <section id="dashboard-section" class="admin-section active">
+                <div class="section-header">
+                    <h1>Dashboard Administrativo</h1>
+                    <div class="header-actions">
+                        <button class="btn btn-outline" id="export-report-btn">
+                            <i class="bi bi-download"></i>
+                            Exportar Relatório
+                        </button>
+                        <button class="btn btn-primary" id="refresh-data-btn">
+                            <i class="bi bi-arrow-clockwise"></i>
+                            Atualizar Dados
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card urgent">
+                        <div class="stat-icon">
+                            <i class="bi bi-exclamation-triangle-fill"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-count="23">0</div>
+                            <div class="stat-label">Urgentes</div>
+                            <div class="stat-change positive">+3 hoje</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card pending">
+                        <div class="stat-icon">
+                            <i class="bi bi-clock-fill"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-count="156">0</div>
+                            <div class="stat-label">Pendentes</div>
+                            <div class="stat-change negative">-8 hoje</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card in-progress">
+                        <div class="stat-icon">
+                            <i class="bi bi-gear-fill"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-count="42">0</div>
+                            <div class="stat-label">Em Andamento</div>
+                            <div class="stat-change positive">+12 hoje</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card resolved">
+                        <div class="stat-icon">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-count="892">0</div>
+                            <div class="stat-label">Resolvidas</div>
+                            <div class="stat-change positive">+15 hoje</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card users">
+                        <div class="stat-icon">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-count="3247">0</div>
+                            <div class="stat-label">Usuários Ativos</div>
+                            <div class="stat-change positive">+45 hoje</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card satisfaction">
+                        <div class="stat-icon">
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-count="4.7">0</div>
+                            <div class="stat-label">Satisfação</div>
+                            <div class="stat-change positive">+0.2 este mês</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts and Analytics -->
+                <div class="analytics-grid">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Reclamações por Categoria</h3>
+                            <select id="category-period">
+                                <option value="7">Últimos 7 dias</option>
+                                <option value="30" selected>Últimos 30 dias</option>
+                                <option value="90">Últimos 3 meses</option>
+                            </select>
+                        </div>
+                        <div class="chart-content">
+                            <canvas id="category-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Tendência de Resolução</h3>
+                            <select id="resolution-period">
+                                <option value="7">Últimos 7 dias</option>
+                                <option value="30" selected>Últimos 30 dias</option>
+                                <option value="90">Últimos 3 meses</option>
+                            </select>
+                        </div>
+                        <div class="chart-content">
+                            <canvas id="resolution-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Mapa de Calor - Reclamações</h3>
+                            <div class="map-controls">
+                                <button class="btn btn-small btn-outline" id="map-filter-all">Todas</button>
+                                <button class="btn btn-small btn-outline" id="map-filter-urgent">Urgentes</button>
+                                <button class="btn btn-small btn-outline" id="map-filter-pending">Pendentes</button>
+                            </div>
+                        </div>
+                        <div class="chart-content">
+                            <div id="complaints-map" class="map-placeholder">
+                                <i class="bi bi-geo-alt"></i>
+                                <p>Mapa de calor das reclamações</p>
+                                <small>Integração com mapas será implementada</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="activity-section">
+                    <div class="activity-header">
+                        <h3>Atividade Recente</h3>
+                        <button class="btn btn-outline btn-small" id="view-all-activity">
+                            Ver Todas
+                        </button>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item urgent">
+                            <div class="activity-icon">
+                                <i class="bi bi-exclamation-triangle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Nova reclamação urgente</h4>
+                                <p>Buraco grande na Av. Getúlio Vargas causando acidentes</p>
+                                <div class="activity-meta">
+                                    <span class="meta-item">
+                                        <i class="bi bi-person"></i>
+                                        Maria Silva
+                                    </span>
+                                    <span class="meta-item">
+                                        <i class="bi bi-clock"></i>
+                                        5 min atrás
+                                    </span>
+                                    <span class="meta-item">
+                                        <i class="bi bi-geo-alt"></i>
+                                        Centro, Cuiabá
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="activity-actions">
+                                <button class="btn btn-small btn-primary">Atender</button>
+                                <button class="btn btn-small btn-outline">Ver</button>
+                            </div>
+                        </div>
+
+                        <div class="activity-item resolved">
+                            <div class="activity-icon">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Reclamação resolvida</h4>
+                                <p>Iluminação pública restaurada na Rua das Flores</p>
+                                <div class="activity-meta">
+                                    <span class="meta-item">
+                                        <i class="bi bi-person"></i>
+                                        Equipe de Manutenção
+                                    </span>
+                                    <span class="meta-item">
+                                        <i class="bi bi-clock"></i>
+                                        1 hora atrás
+                                    </span>
+                                    <span class="meta-item">
+                                        <i class="bi bi-star"></i>
+                                        Avaliação: 4.8/5
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="activity-actions">
+                                <button class="btn btn-small btn-outline">Ver Detalhes</button>
+                            </div>
+                        </div>
+
+                        <div class="activity-item in-progress">
+                            <div class="activity-icon">
+                                <i class="bi bi-gear"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Reclamação em andamento</h4>
+                                <p>Limpeza de terreno baldio na Rua dos Ipês</p>
+                                <div class="activity-meta">
+                                    <span class="meta-item">
+                                        <i class="bi bi-person"></i>
+                                        João Santos
+                                    </span>
+                                    <span class="meta-item">
+                                        <i class="bi bi-clock"></i>
+                                        2 horas atrás
+                                    </span>
+                                    <span class="meta-item">
+                                        <i class="bi bi-calendar"></i>
+                                        Previsão: 3 dias
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="activity-actions">
+                                <button class="btn btn-small btn-outline">Atualizar</button>
+                                <button class="btn btn-small btn-outline">Ver</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Complaints Management -->
+            <section id="complaints-section" class="admin-section">
+                <div class="section-header">
+                    <h1>Gerenciar Reclamações</h1>
+                    <div class="header-actions">
+                        <button class="btn btn-outline" id="bulk-actions-btn">
+                            <i class="bi bi-check2-square"></i>
+                            Ações em Lote
+                        </button>
+                        <button class="btn btn-primary" id="assign-complaint-btn">
+                            <i class="bi bi-person-plus"></i>
+                            Atribuir Responsável
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filters and Search -->
+                <div class="filters-section">
+                    <div class="search-box">
+                        <i class="bi bi-search"></i>
+                        <input type="text" id="complaints-search" placeholder="Buscar reclamações...">
+                    </div>
+                    
+                    <div class="filters-grid">
+                        <select id="status-filter">
+                            <option value="all">Todos os Status</option>
+                            <option value="pending">Pendentes</option>
+                            <option value="in-progress">Em Andamento</option>
+                            <option value="resolved">Resolvidas</option>
+                            <option value="urgent">Urgentes</option>
+                        </select>
+
+                        <select id="category-filter">
+                            <option value="all">Todas as Categorias</option>
+                            <option value="buracos">Buracos</option>
+                            <option value="iluminacao">Iluminação</option>
+                            <option value="limpeza">Limpeza</option>
+                            <option value="transito">Trânsito</option>
+                            <option value="seguranca">Segurança</option>
+                        </select>
+
+                        <select id="priority-filter">
+                            <option value="all">Todas as Prioridades</option>
+                            <option value="urgent">Urgente</option>
+                            <option value="high">Alta</option>
+                            <option value="medium">Média</option>
+                            <option value="low">Baixa</option>
+                        </select>
+
+                        <select id="assignee-filter">
+                            <option value="all">Todos os Responsáveis</option>
+                            <option value="unassigned">Não Atribuídas</option>
+                            <option value="me">Atribuídas a Mim</option>
+                        </select>
+
+                        <input type="date" id="date-from" placeholder="Data inicial">
+                        <input type="date" id="date-to" placeholder="Data final">
+                    </div>
+                </div>
+
+                <!-- Complaints Table -->
+                <div class="table-container">
+                    <table class="complaints-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" id="select-all-complaints">
+                                </th>
+                                <th>ID</th>
+                                <th>Título</th>
+                                <th>Categoria</th>
+                                <th>Status</th>
+                                <th>Prioridade</th>
+                                <th>Cidadão</th>
+                                <th>Localização</th>
+                                <th>Data</th>
+                                <th>Responsável</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="complaints-table-body">
+                            <!-- Complaints will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-container">
+                    <div class="pagination-info">
+                        Mostrando <span id="showing-from">1</span> a <span id="showing-to">20</span> de <span id="total-complaints">156</span> reclamações
+                    </div>
+                    <div class="pagination">
+                        <button class="pagination-btn" id="prev-page" disabled>
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                        <span class="pagination-pages" id="pagination-pages">
+                            <!-- Page numbers will be generated here -->
+                        </span>
+                        <button class="pagination-btn" id="next-page">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Users Management -->
+            <section id="users-section" class="admin-section">
+                <div class="section-header">
+                    <h1>Gerenciar Usuários</h1>
+                    <div class="header-actions">
+                        <button class="btn btn-outline" id="export-users-btn">
+                            <i class="bi bi-download"></i>
+                            Exportar Usuários
+                        </button>
+                        <button class="btn btn-primary" id="invite-user-btn">
+                            <i class="bi bi-person-plus"></i>
+                            Convidar Usuário
+                        </button>
+                    </div>
+                </div>
+
+                <!-- User Stats -->
+                <div class="user-stats-grid">
+                    <div class="user-stat-card">
+                        <div class="stat-icon">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-count="3247">0</div>
+                            <div class="stat-label">Total de Usuários</div>
+                        </div>
+                    </div>
+
+                    <div class="user-stat-card">
+                        <div class="stat-icon">
+                            <i class="bi bi-person-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-count="2891">0</div>
+                            <div class="stat-label">Cidadãos</div>
+                        </div>
+                    </div>
+
+                    <div class="user-stat-card">
+                        <div class="stat-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-count="356">0</div>
+                            <div class="stat-label">Gestores</div>
+                        </div>
+                    </div>
+
+                    <div class="user-stat-card">
+                        <div class="stat-icon">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" data-count="1456">0</div>
+                            <div class="stat-label">Ativos (30 dias)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Users Table -->
+                <div class="table-container">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Tipo</th>
+                                <th>Cidade</th>
+                                <th>Reclamações</th>
+                                <th>Última Atividade</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table-body">
+                            <!-- Users will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports-section" class="admin-section">
+                <div class="section-header">
+                    <h1>Relatórios e Analytics</h1>
+                    <div class="header-actions">
+                        <button class="btn btn-outline" id="schedule-report-btn">
+                            <i class="bi bi-calendar-plus"></i>
+                            Agendar Relatório
+                        </button>
+                        <button class="btn btn-primary" id="generate-report-btn">
+                            <i class="bi bi-file-earmark-text"></i>
+                            Gerar Relatório
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Report Cards -->
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <div class="report-header">
+                            <h3>Relatório Mensal</h3>
+                            <span class="report-status ready">Pronto</span>
+                        </div>
+                        <div class="report-content">
+                            <p>Resumo completo das atividades do mês de Janeiro 2024</p>
+                            <div class="report-stats">
+                                <span>156 reclamações</span>
+                                <span>89% resolvidas</span>
+                                <span>4.7/5 satisfação</span>
+                            </div>
+                        </div>
+                        <div class="report-actions">
+                            <button class="btn btn-outline btn-small">Visualizar</button>
+                            <button class="btn btn-primary btn-small">Download</button>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-header">
+                            <h3>Análise de Performance</h3>
+                            <span class="report-status processing">Processando</span>
+                        </div>
+                        <div class="report-content">
+                            <p>Análise detalhada da performance da equipe</p>
+                            <div class="report-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%"></div>
+                                </div>
+                                <span>65% concluído</span>
+                            </div>
+                        </div>
+                        <div class="report-actions">
+                            <button class="btn btn-outline btn-small" disabled>Aguardar</button>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-header">
+                            <h3>Satisfação do Cidadão</h3>
+                            <span class="report-status ready">Pronto</span>
+                        </div>
+                        <div class="report-content">
+                            <p>Pesquisa de satisfação e feedback dos usuários</p>
+                            <div class="report-stats">
+                                <span>892 avaliações</span>
+                                <span>4.7/5 média</span>
+                                <span>94% positivas</span>
+                            </div>
+                        </div>
+                        <div class="report-actions">
+                            <button class="btn btn-outline btn-small">Visualizar</button>
+                            <button class="btn btn-primary btn-small">Download</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="admin-section">
+                <div class="section-header">
+                    <h1>Configurações do Sistema</h1>
+                </div>
+
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3>Configurações Gerais</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label>Nome da Cidade</label>
+                                <input type="text" value="Cuiabá - MT" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Email de Contato</label>
+                                <input type="email" value="admin@cuiaba.mt.gov.br">
+                            </div>
+                            <div class="form-group">
+                                <label>Telefone de Emergência</label>
+                                <input type="tel" value="(65) 3617-1000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Notificações</h3>
+                        <div class="settings-toggles">
+                            <div class="toggle-item">
+                                <span>Notificar sobre reclamações urgentes</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="toggle-item">
+                                <span>Relatórios automáticos</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="toggle-item">
+                                <span>Alertas de performance</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Complaint Detail Modal -->
+    <div id="complaint-detail-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h2 id="complaint-modal-title">Detalhes da Reclamação</h2>
+                <button class="modal-close" data-modal="complaint-detail-modal">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="complaint-detail-content">
+                    <!-- Complaint details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assign Responsible Modal -->
+    <div id="assign-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Atribuir Responsável</h2>
+                <button class="modal-close" data-modal="assign-modal">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="assign-form">
+                    <div class="form-group">
+                        <label for="assign-responsible">Responsável</label>
+                        <select id="assign-responsible" required>
+                            <option value="">Selecione um responsável</option>
+                            <option value="1">Equipe de Manutenção</option>
+                            <option value="2">Secretaria de Obras</option>
+                            <option value="3">Secretaria de Limpeza</option>
+                            <option value="4">Secretaria de Trânsito</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="assign-priority">Prioridade</label>
+                        <select id="assign-priority" required>
+                            <option value="low">Baixa</option>
+                            <option value="medium" selected>Média</option>
+                            <option value="high">Alta</option>
+                            <option value="urgent">Urgente</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="assign-deadline">Prazo Estimado</label>
+                        <input type="date" id="assign-deadline">
+                    </div>
+                    <div class="form-group">
+                        <label for="assign-notes">Observações</label>
+                        <textarea id="assign-notes" rows="3" placeholder="Observações para o responsável..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" data-modal="assign-modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Atribuir</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
+

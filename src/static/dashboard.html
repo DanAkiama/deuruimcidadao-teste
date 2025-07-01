@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - deuruimcidadao</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">🏛️</div>
+            <div class="loading-text">deuruimcidadao</div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- User Navigation -->
+    <nav id="user-navbar" class="user-navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="bi bi-megaphone"></i>
+                deuruimcidadao
+            </a>
+            
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-link active">
+                    <i class="bi bi-grid-3x3-gap"></i>
+                    Dashboard
+                </a>
+                <a href="complaints.html" class="nav-link">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    Reclamações
+                </a>
+                <a href="profile.html" class="nav-link">
+                    <i class="bi bi-person"></i>
+                    Perfil
+                </a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="notifications" id="notifications">
+                    <i class="bi bi-bell"></i>
+                    <span id="notification-badge" class="notification-badge hidden">3</span>
+                </div>
+                
+                <div class="user-dropdown">
+                    <div class="user-avatar">
+                        <img id="user-avatar-img" src="https://via.placeholder.com/32x32/6366f1/ffffff?text=JS" alt="Avatar">
+                        <span id="user-name">João Silva</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="bi bi-person"></i>
+                            Meu Perfil
+                        </a>
+                        <a href="settings.html" class="dropdown-item">
+                            <i class="bi bi-gear"></i>
+                            Configurações
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <button id="logout-btn" class="dropdown-item">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Sair
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- Dashboard Header -->
+            <div class="dashboard-header">
+                <div class="header-content">
+                    <h1>Dashboard</h1>
+                    <p>Acompanhe suas reclamações e contribua para uma cidade melhor</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-primary btn-large" id="new-complaint-btn">
+                        <i class="bi bi-plus-circle"></i>
+                        Nova Reclamação
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" data-count="12">0</div>
+                        <div class="stat-label">Minhas Reclamações</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon success">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" data-count="8">0</div>
+                        <div class="stat-label">Resolvidas</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon warning">
+                        <i class="bi bi-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" data-count="3">0</div>
+                        <div class="stat-label">Pendentes</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon info">
+                        <i class="bi bi-heart"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" data-count="47">0</div>
+                        <div class="stat-label">Votos Recebidos</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h2>Ações Rápidas</h2>
+                <div class="actions-grid">
+                    <div class="action-card" data-action="new-complaint">
+                        <div class="action-icon">
+                            <i class="bi bi-plus-circle"></i>
+                        </div>
+                        <h3>Nova Reclamação</h3>
+                        <p>Registre um novo problema urbano</p>
+                    </div>
+                    
+                    <div class="action-card" data-action="view-complaints">
+                        <div class="action-icon">
+                            <i class="bi bi-list-ul"></i>
+                        </div>
+                        <h3>Ver Reclamações</h3>
+                        <p>Acompanhe todas as reclamações da cidade</p>
+                    </div>
+                    
+                    <div class="action-card" data-action="my-complaints">
+                        <div class="action-icon">
+                            <i class="bi bi-person-check"></i>
+                        </div>
+                        <h3>Minhas Reclamações</h3>
+                        <p>Gerencie suas reclamações registradas</p>
+                    </div>
+                    
+                    <div class="action-card" data-action="map-view">
+                        <div class="action-icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <h3>Mapa de Problemas</h3>
+                        <p>Visualize problemas no mapa da cidade</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="recent-activity">
+                <div class="section-header">
+                    <h2>Atividade Recente</h2>
+                    <a href="complaints.html" class="view-all-link">Ver todas</a>
+                </div>
+                
+                <div class="activity-list" id="recent-activity-list">
+                    <!-- Activity items will be loaded here -->
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="bi bi-exclamation-triangle"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">Buraco na Rua das Flores</div>
+                            <div class="activity-meta">
+                                <span class="activity-status status-pending">Pendente</span>
+                                <span class="activity-time">2 horas atrás</span>
+                            </div>
+                        </div>
+                        <div class="activity-actions">
+                            <button class="btn btn-small btn-outline">Ver</button>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon success">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">Iluminação da Praça Central</div>
+                            <div class="activity-meta">
+                                <span class="activity-status status-resolved">Resolvido</span>
+                                <span class="activity-time">1 dia atrás</span>
+                            </div>
+                        </div>
+                        <div class="activity-actions">
+                            <button class="btn btn-small btn-outline">Ver</button>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon warning">
+                            <i class="bi bi-chat-dots"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">Resposta da Prefeitura</div>
+                            <div class="activity-meta">
+                                <span class="activity-status status-responded">Respondida</span>
+                                <span class="activity-time">3 dias atrás</span>
+                            </div>
+                        </div>
+                        <div class="activity-actions">
+                            <button class="btn btn-small btn-outline">Ver</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trending Complaints -->
+            <div class="trending-section">
+                <div class="section-header">
+                    <h2>Reclamações em Destaque</h2>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">Todas</button>
+                        <button class="filter-tab" data-filter="trending">Em Alta</button>
+                        <button class="filter-tab" data-filter="urgent">Urgentes</button>
+                    </div>
+                </div>
+                
+                <div class="complaints-grid" id="trending-complaints">
+                    <!-- Complaint cards will be loaded here -->
+                    <div class="complaint-card">
+                        <div class="complaint-header">
+                            <div class="complaint-user">
+                                <img src="https://via.placeholder.com/40x40/8b5cf6/ffffff?text=MS" alt="Maria Silva">
+                                <div class="user-info">
+                                    <span class="user-name">Maria Silva</span>
+                                    <span class="user-badge">Cidadã Ativa</span>
+                                </div>
+                            </div>
+                            <div class="complaint-priority priority-high">
+                                <i class="bi bi-exclamation-triangle"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="complaint-content">
+                            <h3>Semáforo com defeito na Av. Principal</h3>
+                            <p>O semáforo está piscando amarelo há 3 dias, causando congestionamentos e riscos de acidentes...</p>
+                            <div class="complaint-image">
+                                <img src="https://via.placeholder.com/300x200/374151/ffffff?text=Semáforo+Defeituoso" alt="Semáforo com defeito">
+                            </div>
+                        </div>
+                        
+                        <div class="complaint-footer">
+                            <div class="complaint-meta">
+                                <span class="status status-pending">Pendente</span>
+                                <span class="location">
+                                    <i class="bi bi-geo-alt"></i>
+                                    Centro, Cuiabá
+                                </span>
+                            </div>
+                            <div class="complaint-actions">
+                                <button class="vote-btn" data-voted="false">
+                                    <i class="bi bi-heart"></i>
+                                    <span class="vote-count">23</span>
+                                </button>
+                                <button class="comment-btn">
+                                    <i class="bi bi-chat"></i>
+                                    <span>5</span>
+                                </button>
+                                <button class="share-btn">
+                                    <i class="bi bi-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="complaint-card">
+                        <div class="complaint-header">
+                            <div class="complaint-user">
+                                <img src="https://via.placeholder.com/40x40/06b6d4/ffffff?text=JS" alt="João Santos">
+                                <div class="user-info">
+                                    <span class="user-name">João Santos</span>
+                                    <span class="user-badge">Novo Cidadão</span>
+                                </div>
+                            </div>
+                            <div class="complaint-priority priority-normal">
+                                <i class="bi bi-info-circle"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="complaint-content">
+                            <h3>Lixo acumulado na Rua das Palmeiras</h3>
+                            <p>Há mais de uma semana sem coleta de lixo na região, causando mau cheiro e atraindo insetos...</p>
+                        </div>
+                        
+                        <div class="complaint-footer">
+                            <div class="complaint-meta">
+                                <span class="status status-responded">Respondida</span>
+                                <span class="location">
+                                    <i class="bi bi-geo-alt"></i>
+                                    Jardim Europa, Cuiabá
+                                </span>
+                            </div>
+                            <div class="complaint-actions">
+                                <button class="vote-btn" data-voted="true">
+                                    <i class="bi bi-heart-fill"></i>
+                                    <span class="vote-count">15</span>
+                                </button>
+                                <button class="comment-btn">
+                                    <i class="bi bi-chat"></i>
+                                    <span>3</span>
+                                </button>
+                                <button class="share-btn">
+                                    <i class="bi bi-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- New Complaint Modal -->
+    <div id="new-complaint-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h2>Nova Reclamação</h2>
+                <button class="modal-close" data-modal="new-complaint-modal">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="new-complaint-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="complaint-title">Título da Reclamação</label>
+                            <input type="text" id="complaint-title" name="title" placeholder="Descreva brevemente o problema" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="complaint-category">Categoria</label>
+                            <select id="complaint-category" name="category" required>
+                                <option value="">Selecione uma categoria</option>
+                                <option value="buracos">Buracos e Pavimentação</option>
+                                <option value="iluminacao">Iluminação Pública</option>
+                                <option value="lixo">Limpeza e Coleta de Lixo</option>
+                                <option value="transito">Trânsito e Sinalização</option>
+                                <option value="agua">Água e Esgoto</option>
+                                <option value="seguranca">Segurança Pública</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="complaint-description">Descrição Detalhada</label>
+                        <textarea id="complaint-description" name="description" rows="4" placeholder="Descreva o problema em detalhes..." required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="complaint-address">Endereço</label>
+                            <input type="text" id="complaint-address" name="address" placeholder="Rua, número, bairro">
+                            <div class="field-help">
+                                <i class="bi bi-info-circle"></i>
+                                Clique no mapa abaixo para selecionar a localização exata
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="complaint-priority">Prioridade</label>
+                            <select id="complaint-priority" name="priority">
+                                <option value="normal">Normal</option>
+                                <option value="alta">Alta</option>
+                                <option value="urgente">Urgente</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Map Container -->
+                    <div class="form-group">
+                        <label>Localização no Mapa</label>
+                        <div class="map-container" id="complaint-map">
+                            <div class="map-placeholder">
+                                <i class="bi bi-geo-alt"></i>
+                                <p>Mapa será carregado aqui</p>
+                                <small>Clique para selecionar a localização exata</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Image Upload -->
+                    <div class="form-group">
+                        <label for="complaint-images">Fotos do Problema</label>
+                        <div class="image-upload-area" id="image-upload-area">
+                            <input type="file" id="complaint-images" name="images" multiple accept="image/*" hidden>
+                            <div class="upload-placeholder">
+                                <i class="bi bi-cloud-upload"></i>
+                                <p>Clique para adicionar fotos ou arraste aqui</p>
+                                <small>Máximo 5 fotos, até 10MB cada</small>
+                            </div>
+                            <div class="image-preview-grid" id="image-preview-grid"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" data-modal="new-complaint-modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-send"></i>
+                            Enviar Reclamação
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="script.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
+

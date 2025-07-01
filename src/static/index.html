@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>deuruimcidadao - Sua Voz Importa</title>
+    <meta name="description" content="Plataforma para registrar e acompanhar reclamações urbanas. Sua voz importa para construir cidades melhores.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="bi bi-megaphone"></i>
+            </div>
+            <div class="loading-text">deuruimcidadao</div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="bi bi-megaphone"></i>
+                <span>deuruimcidadao</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active">Início</a>
+                <a href="#about" class="nav-link">Sobre</a>
+                <a href="#features" class="nav-link">Funcionalidades</a>
+                <a href="#cities" class="nav-link">Cidades</a>
+                <a href="#contact" class="nav-link">Contato</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="btn btn-outline" id="login-btn">Entrar</button>
+                <button class="btn btn-primary" id="register-btn">Cadastrar</button>
+                <button class="nav-toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- User Navigation (when logged in) -->
+    <nav class="user-navbar hidden" id="user-navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="bi bi-megaphone"></i>
+                <span>deuruimcidadao</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#dashboard" class="nav-link active">Dashboard</a>
+                <a href="#complaints" class="nav-link">Reclamações</a>
+                <a href="#ranking" class="nav-link">Ranking</a>
+            </div>
+            
+            <div class="user-menu">
+                <div class="notifications" id="notifications">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-badge hidden" id="notification-badge">0</span>
+                </div>
+                
+                <div class="user-dropdown">
+                    <div class="user-avatar" id="user-avatar">
+                        <img src="/uploads/profiles/default-avatar.png" alt="Avatar" id="user-avatar-img">
+                        <span id="user-name">Usuário</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    
+                    <div class="dropdown-menu" id="user-dropdown-menu">
+                        <a href="#profile" class="dropdown-item">
+                            <i class="bi bi-person"></i>
+                            Meu Perfil
+                        </a>
+                        <a href="#my-complaints" class="dropdown-item">
+                            <i class="bi bi-chat-dots"></i>
+                            Minhas Reclamações
+                        </a>
+                        <a href="#settings" class="dropdown-item">
+                            <i class="bi bi-gear"></i>
+                            Configurações
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" id="logout-btn">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Sair
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-background">
+                <div class="hero-overlay"></div>
+                <div class="hero-particles"></div>
+            </div>
+            
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            Sua voz importa para
+                            <span class="gradient-text">construir cidades melhores</span>
+                        </h1>
+                        <p class="hero-description">
+                            Registre problemas urbanos, acompanhe soluções e contribua para uma cidade mais eficiente e responsiva às necessidades dos cidadãos.
+                        </p>
+                        
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number" data-count="1247">0</span>
+                                <span class="stat-label">Reclamações Registradas</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-count="892">0</span>
+                                <span class="stat-label">Problemas Resolvidos</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-count="3">0</span>
+                                <span class="stat-label">Cidades Ativas</span>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-actions">
+                            <button class="btn btn-primary btn-large" id="hero-register-btn">
+                                <i class="bi bi-person-plus"></i>
+                                Começar Agora
+                            </button>
+                            <button class="btn btn-outline btn-large" id="hero-learn-more">
+                                <i class="bi bi-play-circle"></i>
+                                Saiba Mais
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-visual">
+                        <div class="hero-card">
+                            <div class="card-header">
+                                <div class="card-avatar">
+                                    <i class="bi bi-person-circle"></i>
+                                </div>
+                                <div class="card-info">
+                                    <h4>João Silva</h4>
+                                    <span>Cidadão Ativo</span>
+                                </div>
+                                <div class="card-badge">
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>Buraco na Rua das Flores</h3>
+                                <p>Grande buraco causando transtornos no trânsito...</p>
+                                <div class="card-meta">
+                                    <span class="status status-resolved">Resolvido</span>
+                                    <span class="votes">
+                                        <i class="bi bi-hand-thumbs-up"></i>
+                                        24 votos
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Como Funciona</h2>
+                    <p class="section-description">
+                        Um processo simples e eficiente para conectar cidadãos e gestores públicos
+                    </p>
+                </div>
+                
+                <div class="process-steps">
+                    <div class="step-item">
+                        <div class="step-icon">
+                            <i class="bi bi-person-plus"></i>
+                        </div>
+                        <div class="step-content">
+                            <h3>1. Cadastre-se</h3>
+                            <p>Crie sua conta como cidadão ou gestor público para acessar a plataforma</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-icon">
+                            <i class="bi bi-exclamation-triangle"></i>
+                        </div>
+                        <div class="step-content">
+                            <h3>2. Registre Problemas</h3>
+                            <p>Relate problemas urbanos com fotos, localização e descrição detalhada</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-icon">
+                            <i class="bi bi-eye"></i>
+                        </div>
+                        <div class="step-content">
+                            <h3>3. Acompanhe</h3>
+                            <p>Monitore o status das suas reclamações e veja o progresso das soluções</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-icon">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                        <div class="step-content">
+                            <h3>4. Resolução</h3>
+                            <p>Receba notificações quando os problemas forem resolvidos pela prefeitura</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Funcionalidades</h2>
+                    <p class="section-description">
+                        Recursos avançados para uma experiência completa de cidadania ativa
+                    </p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <h3>Geolocalização</h3>
+                        <p>Localização precisa dos problemas com integração de mapas</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-camera"></i>
+                        </div>
+                        <h3>Upload de Mídia</h3>
+                        <p>Adicione fotos e vídeos para documentar melhor os problemas</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-hand-thumbs-up"></i>
+                        </div>
+                        <h3>Sistema de Votação</h3>
+                        <p>Vote em reclamações para dar prioridade aos problemas mais urgentes</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-bell"></i>
+                        </div>
+                        <h3>Notificações</h3>
+                        <p>Receba atualizações por email e WhatsApp sobre suas reclamações</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-trophy"></i>
+                        </div>
+                        <h3>Gamificação</h3>
+                        <p>Ganhe pontos, badges e participe do ranking de cidadãos ativos</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <h3>Relatórios</h3>
+                        <p>Acompanhe estatísticas e relatórios públicos da sua cidade</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cities Section -->
+        <section id="cities" class="cities-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Cidades Participantes</h2>
+                    <p class="section-description">
+                        Expandindo para mais cidades do Brasil
+                    </p>
+                </div>
+                
+                <div class="cities-grid">
+                    <div class="city-card active">
+                        <div class="city-image">
+                            <img src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=400&h=300&fit=crop" alt="Cuiabá">
+                        </div>
+                        <div class="city-content">
+                            <h3>Cuiabá - MT</h3>
+                            <p>Portal Pantanal</p>
+                            <div class="city-stats">
+                                <span><i class="bi bi-people"></i> 1.2M habitantes</span>
+                                <span><i class="bi bi-chat-dots"></i> 847 reclamações</span>
+                            </div>
+                            <button class="btn btn-primary" data-city="cuiaba">
+                                Acessar deuruimcuiaba
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image">
+                            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=300&fit=crop" alt="Várzea Grande">
+                        </div>
+                        <div class="city-content">
+                            <h3>Várzea Grande - MT</h3>
+                            <p>Cidade Irmã</p>
+                            <div class="city-stats">
+                                <span><i class="bi bi-people"></i> 355K habitantes</span>
+                                <span><i class="bi bi-chat-dots"></i> 234 reclamações</span>
+                            </div>
+                            <button class="btn btn-outline" data-city="varzeagrande">
+                                Acessar deuruimvarzeagrande
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card coming-soon">
+                        <div class="city-image">
+                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop" alt="Em Breve">
+                        </div>
+                        <div class="city-content">
+                            <h3>Sua Cidade</h3>
+                            <p>Em Breve</p>
+                            <div class="city-stats">
+                                <span><i class="bi bi-clock"></i> Em desenvolvimento</span>
+                            </div>
+                            <button class="btn btn-outline" disabled>
+                                Em Breve
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Entre em Contato</h2>
+                    <p class="section-description">
+                        Tem dúvidas ou sugestões? Estamos aqui para ajudar
+                    </p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>contato@deuruimcidadao.com.br</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="bi bi-whatsapp"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>WhatsApp</h4>
+                                <p>(65) 99999-9999</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Endereço</h4>
+                                <p>Cuiabá - MT, Brasil</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <input type="text" id="contact-name" placeholder="Seu nome" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="contact-email" placeholder="Seu email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="contact-message" placeholder="Sua mensagem" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="bi bi-send"></i>
+                                Enviar Mensagem
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="bi bi-megaphone"></i>
+                        <span>deuruimcidadao</span>
+                    </div>
+                    <p>Conectando cidadãos e gestores públicos para construir cidades melhores.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Plataforma</h4>
+                        <ul>
+                            <li><a href="#features">Funcionalidades</a></li>
+                            <li><a href="#cities">Cidades</a></li>
+                            <li><a href="#about">Como Funciona</a></li>
+                            <li><a href="#contact">Suporte</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#privacy">Privacidade</a></li>
+                            <li><a href="#terms">Termos de Uso</a></li>
+                            <li><a href="#cookies">Cookies</a></li>
+                            <li><a href="#accessibility">Acessibilidade</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Desenvolvedores</h4>
+                        <ul>
+                            <li><a href="#api">API</a></li>
+                            <li><a href="#docs">Documentação</a></li>
+                            <li><a href="#github">GitHub</a></li>
+                            <li><a href="#status">Status</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 deuruimcidadao. Todos os direitos reservados.</p>
+                <p>Desenvolvido com ❤️ para construir cidades melhores.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Entrar na sua conta</h2>
+                <button class="modal-close" data-modal="login-modal">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-field">Email, CPF ou Nome de usuário</label>
+                        <input type="text" id="login-field" placeholder="Digite seu email, CPF ou nome de usuário" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">Senha</label>
+                        <div class="password-input">
+                            <input type="password" id="login-password" placeholder="Digite sua senha" required>
+                            <button type="button" class="password-toggle" data-target="login-password">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" id="remember-me">
+                            <span class="checkmark"></span>
+                            Lembrar de mim
+                        </label>
+                        <a href="#forgot-password" class="forgot-link">Esqueci minha senha</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                        Entrar
+                    </button>
+                </form>
+                
+                <div class="modal-footer">
+                    <p>Não tem uma conta? <a href="#" id="switch-to-register">Cadastre-se aqui</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="register-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Criar nova conta</h2>
+                <button class="modal-close" data-modal="register-modal">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="register-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="register-full-name">Nome Completo</label>
+                            <input type="text" id="register-full-name" placeholder="Digite seu nome completo" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-username">Nome de Usuário</label>
+                            <input type="text" id="register-username" placeholder="Digite um nome de usuário" required>
+                            <div class="field-feedback" id="username-feedback"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" placeholder="Digite seu email" required>
+                            <div class="field-feedback" id="email-feedback"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-cpf">CPF</label>
+                            <input type="text" id="register-cpf" placeholder="000.000.000-00" required>
+                            <div class="field-feedback" id="cpf-feedback"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="register-phone">Telefone (Opcional)</label>
+                            <input type="tel" id="register-phone" placeholder="(00) 00000-0000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-city">Cidade</label>
+                            <select id="register-city" required>
+                                <option value="">Selecione sua cidade</option>
+                                <option value="cuiaba">Cuiabá - MT</option>
+                                <option value="varzeagrande">Várzea Grande - MT</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-role">Tipo de Usuário</label>
+                        <select id="register-role" required>
+                            <option value="reclamante">Cidadão (Fazer reclamações)</option>
+                            <option value="responsavel">Gestor Público (Gerenciar reclamações)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="register-password">Senha</label>
+                            <div class="password-input">
+                                <input type="password" id="register-password" placeholder="Digite uma senha" required>
+                                <button type="button" class="password-toggle" data-target="register-password">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-confirm-password">Confirmar Senha</label>
+                            <div class="password-input">
+                                <input type="password" id="register-confirm-password" placeholder="Confirme sua senha" required>
+                                <button type="button" class="password-toggle" data-target="register-confirm-password">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" id="accept-terms" required>
+                            <span class="checkmark"></span>
+                            Aceito os <a href="#terms">Termos de Uso</a> e <a href="#privacy">Política de Privacidade</a>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <i class="bi bi-person-plus"></i>
+                        Criar Conta
+                    </button>
+                </form>
+                
+                <div class="modal-footer">
+                    <p>Já tem uma conta? <a href="#" id="switch-to-login">Entre aqui</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="/script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - deuruimcidadao</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">🏛️</div>
+            <div class="loading-text">deuruimcidadao</div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- User Navigation -->
+    <nav id="user-navbar" class="user-navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="bi bi-megaphone"></i>
+                deuruimcidadao
+            </a>
+            
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="bi bi-grid-3x3-gap"></i>
+                    Dashboard
+                </a>
+                <a href="complaints.html" class="nav-link">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    Reclamações
+                </a>
+                <a href="profile.html" class="nav-link active">
+                    <i class="bi bi-person"></i>
+                    Perfil
+                </a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="notifications" id="notifications">
+                    <i class="bi bi-bell"></i>
+                    <span id="notification-badge" class="notification-badge hidden">3</span>
+                </div>
+                
+                <div class="user-dropdown">
+                    <div class="user-avatar">
+                        <img id="user-avatar-img" src="https://via.placeholder.com/32x32/6366f1/ffffff?text=JS" alt="Avatar">
+                        <span id="user-name">João Silva</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="bi bi-person"></i>
+                            Meu Perfil
+                        </a>
+                        <a href="settings.html" class="dropdown-item">
+                            <i class="bi bi-gear"></i>
+                            Configurações
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <button id="logout-btn" class="dropdown-item">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Sair
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="profile-main">
+        <div class="container">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div class="profile-cover">
+                    <div class="cover-image" id="cover-image">
+                        <button class="change-cover-btn" id="change-cover-btn">
+                            <i class="bi bi-camera"></i>
+                            Alterar Capa
+                        </button>
+                    </div>
+                    
+                    <div class="profile-info">
+                        <div class="profile-avatar-container">
+                            <div class="profile-avatar" id="profile-avatar">
+                                <img src="https://via.placeholder.com/120x120/6366f1/ffffff?text=JS" alt="João Silva" id="avatar-img">
+                                <button class="change-avatar-btn" id="change-avatar-btn">
+                                    <i class="bi bi-camera"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-details">
+                            <h1 id="profile-name">João Silva Santos</h1>
+                            <p id="profile-username">@joao_silva</p>
+                            <div class="profile-badges">
+                                <span class="badge badge-primary">Cidadão Ativo</span>
+                                <span class="badge badge-success">Nível 5</span>
+                                <span class="badge badge-info">Cuiabá - MT</span>
+                            </div>
+                            <p id="profile-bio">Morador do bairro Centro há 15 anos. Acredito que juntos podemos fazer nossa cidade melhor! 🏙️</p>
+                        </div>
+                        
+                        <div class="profile-actions">
+                            <button class="btn btn-primary" id="edit-profile-btn">
+                                <i class="bi bi-pencil"></i>
+                                Editar Perfil
+                            </button>
+                            <button class="btn btn-outline" id="share-profile-btn">
+                                <i class="bi bi-share"></i>
+                                Compartilhar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Stats -->
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="24">0</div>
+                    <div class="stat-label">Reclamações</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="18">0</div>
+                    <div class="stat-label">Resolvidas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="156">0</div>
+                    <div class="stat-label">Votos Recebidos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="89">0</div>
+                    <div class="stat-label">Votos Dados</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="1250">0</div>
+                    <div class="stat-label">Pontos XP</div>
+                </div>
+            </div>
+
+            <!-- Profile Content -->
+            <div class="profile-content">
+                <!-- Sidebar -->
+                <div class="profile-sidebar">
+                    <!-- Achievements -->
+                    <div class="sidebar-section">
+                        <h3>Conquistas</h3>
+                        <div class="achievements-grid">
+                            <div class="achievement-item earned">
+                                <div class="achievement-icon">🏆</div>
+                                <div class="achievement-info">
+                                    <div class="achievement-name">Primeira Reclamação</div>
+                                    <div class="achievement-desc">Registrou sua primeira reclamação</div>
+                                </div>
+                            </div>
+                            
+                            <div class="achievement-item earned">
+                                <div class="achievement-icon">⭐</div>
+                                <div class="achievement-info">
+                                    <div class="achievement-name">Cidadão Ativo</div>
+                                    <div class="achievement-desc">10 reclamações registradas</div>
+                                </div>
+                            </div>
+                            
+                            <div class="achievement-item earned">
+                                <div class="achievement-icon">❤️</div>
+                                <div class="achievement-info">
+                                    <div class="achievement-name">Querido pela Comunidade</div>
+                                    <div class="achievement-desc">100+ votos recebidos</div>
+                                </div>
+                            </div>
+                            
+                            <div class="achievement-item">
+                                <div class="achievement-icon">🎯</div>
+                                <div class="achievement-info">
+                                    <div class="achievement-name">Especialista</div>
+                                    <div class="achievement-desc">50 reclamações registradas</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Activity Summary -->
+                    <div class="sidebar-section">
+                        <h3>Resumo de Atividade</h3>
+                        <div class="activity-summary">
+                            <div class="summary-item">
+                                <i class="bi bi-calendar-check"></i>
+                                <div class="summary-content">
+                                    <span class="summary-label">Membro desde</span>
+                                    <span class="summary-value">Janeiro 2024</span>
+                                </div>
+                            </div>
+                            
+                            <div class="summary-item">
+                                <i class="bi bi-clock"></i>
+                                <div class="summary-content">
+                                    <span class="summary-label">Última atividade</span>
+                                    <span class="summary-value">2 horas atrás</span>
+                                </div>
+                            </div>
+                            
+                            <div class="summary-item">
+                                <i class="bi bi-geo-alt"></i>
+                                <div class="summary-content">
+                                    <span class="summary-label">Localização</span>
+                                    <span class="summary-value">Centro, Cuiabá</span>
+                                </div>
+                            </div>
+                            
+                            <div class="summary-item">
+                                <i class="bi bi-star"></i>
+                                <div class="summary-content">
+                                    <span class="summary-label">Avaliação média</span>
+                                    <span class="summary-value">4.8/5.0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="sidebar-section">
+                        <h3>Informações de Contato</h3>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="bi bi-envelope"></i>
+                                <span>joao.silva@email.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="bi bi-phone"></i>
+                                <span>(65) 99999-9999</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="bi bi-geo-alt"></i>
+                                <span>Cuiabá, Mato Grosso</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="profile-main-content">
+                    <!-- Tabs -->
+                    <div class="profile-tabs">
+                        <button class="tab-btn active" data-tab="complaints">
+                            <i class="bi bi-exclamation-triangle"></i>
+                            Minhas Reclamações
+                        </button>
+                        <button class="tab-btn" data-tab="activity">
+                            <i class="bi bi-clock-history"></i>
+                            Atividade
+                        </button>
+                        <button class="tab-btn" data-tab="favorites">
+                            <i class="bi bi-heart"></i>
+                            Favoritos
+                        </button>
+                        <button class="tab-btn" data-tab="settings">
+                            <i class="bi bi-gear"></i>
+                            Configurações
+                        </button>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div class="tab-content">
+                        <!-- Complaints Tab -->
+                        <div class="tab-pane active" id="complaints-tab">
+                            <div class="complaints-header">
+                                <h3>Minhas Reclamações (24)</h3>
+                                <div class="complaints-filters">
+                                    <select class="filter-select" id="status-filter">
+                                        <option value="all">Todos os Status</option>
+                                        <option value="pending">Pendentes</option>
+                                        <option value="responded">Respondidas</option>
+                                        <option value="resolved">Resolvidas</option>
+                                    </select>
+                                    <select class="filter-select" id="category-filter">
+                                        <option value="all">Todas as Categorias</option>
+                                        <option value="buracos">Buracos</option>
+                                        <option value="iluminacao">Iluminação</option>
+                                        <option value="lixo">Limpeza</option>
+                                        <option value="transito">Trânsito</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="complaints-list" id="user-complaints-list">
+                                <!-- User complaints will be loaded here -->
+                                <div class="complaint-item">
+                                    <div class="complaint-status status-resolved">
+                                        <i class="bi bi-check-circle"></i>
+                                    </div>
+                                    <div class="complaint-content">
+                                        <h4>Buraco na Rua das Palmeiras</h4>
+                                        <p>Buraco grande causando danos aos veículos...</p>
+                                        <div class="complaint-meta">
+                                            <span class="meta-item">
+                                                <i class="bi bi-calendar"></i>
+                                                15 de Janeiro
+                                            </span>
+                                            <span class="meta-item">
+                                                <i class="bi bi-heart"></i>
+                                                23 votos
+                                            </span>
+                                            <span class="meta-item">
+                                                <i class="bi bi-chat"></i>
+                                                5 comentários
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="complaint-actions">
+                                        <button class="btn btn-small btn-outline">Ver</button>
+                                        <button class="btn btn-small btn-outline">Editar</button>
+                                    </div>
+                                </div>
+
+                                <div class="complaint-item">
+                                    <div class="complaint-status status-pending">
+                                        <i class="bi bi-clock"></i>
+                                    </div>
+                                    <div class="complaint-content">
+                                        <h4>Iluminação deficiente na Praça Central</h4>
+                                        <p>Lâmpadas queimadas deixando a praça escura...</p>
+                                        <div class="complaint-meta">
+                                            <span class="meta-item">
+                                                <i class="bi bi-calendar"></i>
+                                                20 de Janeiro
+                                            </span>
+                                            <span class="meta-item">
+                                                <i class="bi bi-heart"></i>
+                                                12 votos
+                                            </span>
+                                            <span class="meta-item">
+                                                <i class="bi bi-chat"></i>
+                                                2 comentários
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="complaint-actions">
+                                        <button class="btn btn-small btn-outline">Ver</button>
+                                        <button class="btn btn-small btn-outline">Editar</button>
+                                    </div>
+                                </div>
+
+                                <div class="complaint-item">
+                                    <div class="complaint-status status-responded">
+                                        <i class="bi bi-chat-dots"></i>
+                                    </div>
+                                    <div class="complaint-content">
+                                        <h4>Lixo acumulado na Rua dos Ipês</h4>
+                                        <p>Coleta irregular causando acúmulo de lixo...</p>
+                                        <div class="complaint-meta">
+                                            <span class="meta-item">
+                                                <i class="bi bi-calendar"></i>
+                                                25 de Janeiro
+                                            </span>
+                                            <span class="meta-item">
+                                                <i class="bi bi-heart"></i>
+                                                8 votos
+                                            </span>
+                                            <span class="meta-item">
+                                                <i class="bi bi-chat"></i>
+                                                1 comentário
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="complaint-actions">
+                                        <button class="btn btn-small btn-outline">Ver</button>
+                                        <button class="btn btn-small btn-outline">Editar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Activity Tab -->
+                        <div class="tab-pane" id="activity-tab">
+                            <h3>Atividade Recente</h3>
+                            <div class="activity-timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-icon">
+                                        <i class="bi bi-plus-circle"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Nova reclamação registrada</h4>
+                                        <p>Você registrou "Lixo acumulado na Rua dos Ipês"</p>
+                                        <span class="timeline-time">2 horas atrás</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-icon success">
+                                        <i class="bi bi-heart"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Recebeu 5 novos votos</h4>
+                                        <p>Sua reclamação "Buraco na Rua das Palmeiras" recebeu mais apoio</p>
+                                        <span class="timeline-time">1 dia atrás</span>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-icon warning">
+                                        <i class="bi bi-chat-dots"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Resposta da Prefeitura</h4>
+                                        <p>A Prefeitura respondeu sua reclamação sobre iluminação</p>
+                                        <span class="timeline-time">3 dias atrás</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Favorites Tab -->
+                        <div class="tab-pane" id="favorites-tab">
+                            <h3>Reclamações Favoritas</h3>
+                            <div class="favorites-list">
+                                <p class="empty-state">
+                                    <i class="bi bi-heart"></i>
+                                    Você ainda não favoritou nenhuma reclamação.
+                                    <br>
+                                    <small>Favorite reclamações que considera importantes para acompanhar.</small>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Settings Tab -->
+                        <div class="tab-pane" id="settings-tab">
+                            <h3>Configurações da Conta</h3>
+                            <div class="settings-sections">
+                                <div class="settings-section">
+                                    <h4>Notificações</h4>
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <span class="setting-label">Email sobre novas respostas</span>
+                                            <span class="setting-desc">Receba emails quando suas reclamações forem respondidas</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <span class="setting-label">WhatsApp sobre atualizações</span>
+                                            <span class="setting-desc">Receba mensagens no WhatsApp sobre status das reclamações</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <span class="setting-label">Notificações push</span>
+                                            <span class="setting-desc">Receba notificações no navegador</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="settings-section">
+                                    <h4>Privacidade</h4>
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <span class="setting-label">Perfil público</span>
+                                            <span class="setting-desc">Permitir que outros usuários vejam seu perfil</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <span class="setting-label">Mostrar estatísticas</span>
+                                            <span class="setting-desc">Exibir suas estatísticas no perfil público</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="settings-section">
+                                    <h4>Conta</h4>
+                                    <div class="setting-actions">
+                                        <button class="btn btn-outline" id="change-password-btn">
+                                            <i class="bi bi-key"></i>
+                                            Alterar Senha
+                                        </button>
+                                        <button class="btn btn-outline" id="export-data-btn">
+                                            <i class="bi bi-download"></i>
+                                            Exportar Dados
+                                        </button>
+                                        <button class="btn btn-danger" id="delete-account-btn">
+                                            <i class="bi bi-trash"></i>
+                                            Excluir Conta
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h2>Editar Perfil</h2>
+                <button class="modal-close" data-modal="edit-profile-modal">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-profile-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit-full-name">Nome Completo</label>
+                            <input type="text" id="edit-full-name" name="full_name" value="João Silva Santos" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-username">Nome de Usuário</label>
+                            <input type="text" id="edit-username" name="username" value="joao_silva" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit-email">Email</label>
+                            <input type="email" id="edit-email" name="email" value="joao.silva@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-phone">Telefone</label>
+                            <input type="tel" id="edit-phone" name="phone" value="(65) 99999-9999">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-bio">Biografia</label>
+                        <textarea id="edit-bio" name="bio" rows="3" placeholder="Conte um pouco sobre você...">Morador do bairro Centro há 15 anos. Acredito que juntos podemos fazer nossa cidade melhor! 🏙️</textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit-city">Cidade</label>
+                            <select id="edit-city" name="city">
+                                <option value="cuiaba" selected>Cuiabá - MT</option>
+                                <option value="varzea-grande">Várzea Grande - MT</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-neighborhood">Bairro</label>
+                            <input type="text" id="edit-neighborhood" name="neighborhood" value="Centro">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" data-modal="edit-profile-modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check"></i>
+                            Salvar Alterações
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="change-password-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Alterar Senha</h2>
+                <button class="modal-close" data-modal="change-password-modal">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="change-password-form">
+                    <div class="form-group">
+                        <label for="current-password">Senha Atual</label>
+                        <input type="password" id="current-password" name="current_password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new-password">Nova Senha</label>
+                        <input type="password" id="new-password" name="new_password" required>
+                        <div class="password-strength" id="password-strength"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password">Confirmar Nova Senha</label>
+                        <input type="password" id="confirm-password" name="confirm_password" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" data-modal="change-password-modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-key"></i>
+                            Alterar Senha
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden file inputs -->
+    <input type="file" id="avatar-upload" accept="image/*" hidden>
+    <input type="file" id="cover-upload" accept="image/*" hidden>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="script.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>
+
