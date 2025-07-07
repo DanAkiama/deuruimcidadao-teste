@@ -71,10 +71,10 @@ def login():
         data = request.get_json()
         
         # Validar campos obrigatórios
-        if 'identifier' not in data or 'password' not in data:
+        if 'login_field' not in data or 'password' not in data:
             return jsonify({
                 'success': False,
-                'message': 'Identifier e password são obrigatórios'
+                'message': 'Login field e password são obrigatórios'
             }), 400
         
         # Executar caso de uso
